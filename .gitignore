@@ -1,5 +1,8 @@
-build
+# Ignore Gradle project-specific cache directory
 .gradle
+
+# Ignore Gradle build output directory
+build
 .idea
 *.iml
 *.ipr
@@ -12,4 +15,7 @@ out
 
 src/docs/generated-snippets/
 src/ratpack/public/docs
-gradle/wrapper/
+local.properties
+
+*.DS_Store
+./**/*.DS_Store

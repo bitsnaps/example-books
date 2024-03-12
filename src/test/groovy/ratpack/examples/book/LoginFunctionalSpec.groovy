@@ -1,7 +1,7 @@
 package ratpack.examples.book
 
 import geb.spock.GebReportingSpec
-import ratpack.examples.book.fixture.ExampleBooksApplicationUnderTest
+import ratpack.groovy.test.GroovyRatpackMainApplicationUnderTest
 import ratpack.examples.book.pages.BooksPage
 import ratpack.examples.book.pages.LoginPage
 import ratpack.test.ApplicationUnderTest
@@ -12,10 +12,10 @@ import spock.lang.Stepwise
 class LoginFunctionalSpec extends GebReportingSpec {
 
     @Shared
-    ApplicationUnderTest aut = new ExampleBooksApplicationUnderTest()
+    ApplicationUnderTest aut = new GroovyRatpackMainApplicationUnderTest()
 
     def setup() {
-        browser.baseUrl = aut.address.toString()
+        browser.baseUrl = aut.address
     }
 
     def "first load"() {
@@ -67,4 +67,3 @@ class LoginFunctionalSpec extends GebReportingSpec {
     }
 
 }
-

@@ -58,7 +58,9 @@ bodyContents: contents {
             }
             tbody { books.each { book ->
                 tr {
-                    td(book.isbn)
+                    td {
+                        a(href: "/book?isbn=$book.isbn", book.isbn)
+                    }
                     td(book.title)
                     td(book.author)
                     td(book.publisher)

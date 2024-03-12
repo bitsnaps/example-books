@@ -4,15 +4,17 @@ import com.google.inject.Inject
 import groovy.sql.Sql
 import ratpack.exec.Blocking
 import ratpack.exec.Promise
-import ratpack.health.HealthCheck
+import ratpack.health.HealthCheck // Deprecated in v2.0 use: ratpack.core.health
 import ratpack.registry.Registry
+//import ratpack.core.health.HealthCheck
+//import ratpack.exec.registry.Registry
 
 class DatabaseHealthCheck implements HealthCheck {
 
     Sql sql
 
     @Inject
-    public DatabaseHealthCheck(Sql sql) {
+    DatabaseHealthCheck(Sql sql) {
         this.sql = sql
     }
 

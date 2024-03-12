@@ -3,7 +3,9 @@ package ratpack.examples.book
 import ratpack.example.books.Book
 import ratpack.example.books.BookRestEndpoint
 import ratpack.example.books.BookService
-import ratpack.rx.RxRatpack
+import ratpack.exec.Promise
+
+//import ratpack.rx.RxRatpack
 import spock.lang.Specification
 
 import static ratpack.groovy.test.handling.GroovyRequestFixture.handle
@@ -11,17 +13,17 @@ import static ratpack.groovy.test.handling.GroovyRequestFixture.handle
 class BookRestEndpointUnitSpec extends Specification {
 
     def setup() {
-        RxRatpack.initialize()
+//        RxRatpack.initialize()
     }
 
     def "will render book"() {
         given:
         def book = new Book("1932394842", 10, 22.22, "Groovy in Action", "Dierk Koenig", "Manning Publications")
 
-        rx.Observable<Book> findObservable = rx.Observable.just(book)
+        Promise<Book> findPromise = Promise.value(book)
 
         def bookServices = Mock(BookService)
-        bookServices.find("1932394842") >> findObservable
+        bookServices.find("1932394842") >> findPromise
 
         when:
         def result = handle(new BookRestEndpoint(bookServices)) {
@@ -38,10 +40,10 @@ class BookRestEndpointUnitSpec extends Specification {
 
     def "will return 404 if book not found"() {
         given:
-        rx.Observable<Book> findObservable = rx.Observable.just(null)
+        Promise<Book> findPromise = Promise.ofNull()
 
         def bookServices = Mock(BookService)
-        bookServices.find("1932394842") >> findObservable
+        bookServices.find("1932394842") >> findPromise
 
         when:
         def result = handle(new BookRestEndpoint(bookServices)) {
@@ -58,10 +60,11 @@ class BookRestEndpointUnitSpec extends Specification {
 
     def "will delete book"() {
         given:
-        rx.Observable<Book> deleteObservable = rx.Observable.just(null)
+//        rx.Observable<Book> deleteObservable = rx.Observable.just(null)
+        Promise<Book> deletePromise = Promise.ofNull()
 
         def bookServices = Mock(BookService)
-        1 * bookServices.delete("1932394842") >> deleteObservable
+        1 * bookServices.delete("1932394842") >> deletePromise
 
         when:
         def result = handle(new BookRestEndpoint(bookServices)) {

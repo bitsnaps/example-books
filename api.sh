@@ -9,5 +9,5 @@ json-server -w api/db.json --routes api/routes.json --host 127.0.0.1
 # Get 4th book by ID:
 # curl http://localhost:3000/api/v2/json/book/4
 # Get 5th book by isbn number (must provide a [fake] apikey):
-# curl http://localhost:3000/api/v2/json/4B5GQSQ4/book/0132350882
+# curl http://localhost:3000/api/v2/json/YOUR_API_KEY/book/0132350882
 

@@ -2,6 +2,7 @@ package ratpack.example.books
 
 import ratpack.groovy.handling.GroovyContext
 import ratpack.groovy.render.GroovyRendererSupport
+//import ratpack.core.jackson.Jackson
 import ratpack.jackson.Jackson
 
 import static ratpack.groovy.Groovy.markupBuilder

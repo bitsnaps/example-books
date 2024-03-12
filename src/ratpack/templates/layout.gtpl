@@ -14,6 +14,9 @@ html(lang:'en') {
     }
     body {
         div(class:'container') {
+
+            a(href: '/', "Home")
+
             if (msg) {
                 div(class: 'alert alert-info alert-dismissable') {
                     button(type: 'button', class: 'close', 'data-dismiss': 'alert', 'aria-hidden':'true', '&times;')

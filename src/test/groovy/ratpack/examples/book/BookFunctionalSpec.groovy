@@ -1,15 +1,11 @@
 package ratpack.examples.book
 
 import geb.spock.GebReportingSpec
-import groovy.sql.Sql
-import ratpack.examples.book.fixture.ExampleBooksApplicationUnderTest
 import ratpack.examples.book.pages.BooksPage
 import ratpack.examples.book.pages.CreateBookPage
 import ratpack.examples.book.pages.UpdateBookPage
-import ratpack.groovy.test.embed.GroovyEmbeddedApp
+import ratpack.groovy.test.GroovyRatpackMainApplicationUnderTest
 import ratpack.test.ApplicationUnderTest
-import ratpack.test.embed.EmbeddedApp
-import ratpack.test.remote.RemoteControl
 import spock.lang.Shared
 import spock.lang.Stepwise
 
@@ -17,41 +13,46 @@ import spock.lang.Stepwise
 class BookFunctionalSpec extends GebReportingSpec {
 
     @Shared
-    ApplicationUnderTest aut = new ExampleBooksApplicationUnderTest()
+    ApplicationUnderTest aut = new GroovyRatpackMainApplicationUnderTest()
 
-    @Shared
-    EmbeddedApp isbndb = GroovyEmbeddedApp.of {
-        handlers {
-            all {
-                render '{"data" : [{"title" : "Jurassic Park: A Novel", "publisher_name" : "Ballantine Books", "author_data" : [{"id" : "cm", "name" : "Crichton, Michael"}]}]}'
-            }
-        }
-    }
+    // @Shared
+    // EmbeddedApp isbndb = GroovyEmbeddedApp.of {
+    //     handlers {
+    //         all {
+    //             render '{"data" : [{"title" : "Jurassic Park: A Novel", "publisher_name" : "Ballantine Books", "author_data" : [{"id" : "cm", "name" : "Crichton, Michael"}]}]}'
+    //         }
+    //     }
+    // }
+
+    final static int NBR_BOOKS = 0
 
     def setupSpec() {
-        System.setProperty('eb.isbndb.host', "http://${isbndb.address.host}:${isbndb.address.port}")
-        System.setProperty('eb.isbndb.apikey', "fakeapikey")
+        // println("URL: http://${isbndb.address.host}:${isbndb.address.port}")
+        // System.setProperty('eb.isbndb.host', "http://${isbndb.address.host}:${isbndb.address.port}")
+        // System.setProperty('eb.isbndb.apikey', "fakeapikey")
     }
 
     def setup() {
-        browser.baseUrl = aut.address.toString()
+        browser.baseUrl = aut.address
     }
 
     def cleanupSpec() {
-        RemoteControl remote = new RemoteControl(aut)
-        remote.exec {
-            get(Sql).execute("delete from books")
-        }
-        System.clearProperty('eb.isbndb.host')
+//        RemoteControl remote = new RemoteControl(aut)
+//        remote.exec {
+//            get(Sql).execute("delete from books")
+//        }
+        // System.clearProperty('eb.isbndb.host')
     }
 
-    def "no books are listed"() {
+    def "books are listed"() {
         when:
         to BooksPage
 
         then:
-        books.size() == 0
+        at BooksPage
+        books.size() == NBR_BOOKS
     }
+
 
     def "go to create book page"() {
         when:
@@ -72,18 +73,19 @@ class BookFunctionalSpec extends GebReportingSpec {
         at BooksPage
 
         and:
-        books.size() == 1
-        books[0].isbn == "0345538986"
-        books[0].title == "Jurassic Park: A Novel"
-        books[0].author == "Crichton, Michael"
-        books[0].publisher == "Ballantine Books"
-        books[0].price == "10.23"
-        books[0].quantity == "10"
+        books.size() == NBR_BOOKS + 1
+        with (books.find { it.isbn=='0345538986'} ) {
+          title == "Jurassic Park: A Novel"
+          author == "Crichton, Michael"
+          publisher == "Ballantine Books"
+          price == "10.23"
+          quantity == "10"
+      }
     }
 
     def "update book"() {
         when:
-        books[0].updateButton.click()
+        books.find { it.isbn=='0345538986'}.updateButton.click()
 
         then:
         at UpdateBookPage
@@ -97,25 +99,25 @@ class BookFunctionalSpec extends GebReportingSpec {
         at BooksPage
 
         and:
-        books.size() == 1
-        books[0].isbn == "0345538986"
-        books[0].title == "Jurassic Park: A Novel"
-        books[0].author == "Crichton, Michael"
-        books[0].publisher == "Ballantine Books"
-        books[0].price == "5.34"
-        books[0].quantity == "2"
+        books.size() == NBR_BOOKS + 1
+        with (books.find { it.isbn=='0345538986'}){
+          title == "Jurassic Park: A Novel"
+          author == "Crichton, Michael"
+          publisher == "Ballantine Books"
+          price == "5.34"
+          quantity == "2"
+        }
     }
 
     def "delete book"() {
         when:
-        books[0].deleteButton.click()
+        books.find { it.isbn=='0345538986'}.deleteButton.click()
 
         then:
         at BooksPage
 
         and:
-        books.size() == 0
+        books.size() == NBR_BOOKS
     }
 
 }
-

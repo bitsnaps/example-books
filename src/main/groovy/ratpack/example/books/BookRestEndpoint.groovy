@@ -1,12 +1,13 @@
 package ratpack.example.books
 
+import com.fasterxml.jackson.databind.JsonNode
 import ratpack.groovy.handling.GroovyChainAction
-
 import javax.inject.Inject
-
+//import static ratpack.core.jackson.Jackson.json
+//import static ratpack.core.jackson.Jackson.jsonNode
 import static ratpack.jackson.Jackson.json
 import static ratpack.jackson.Jackson.jsonNode
-import static ratpack.rx.RxRatpack.observe
+//import static ratpack.rx2.RxRatpack.observe
 
 class BookRestEndpoint extends GroovyChainAction {
 
@@ -20,43 +21,35 @@ class BookRestEndpoint extends GroovyChainAction {
     @Override
     void execute() throws Exception {
         path(":isbn") {
-            def isbn = pathTokens["isbn"]
+            String isbn = pathTokens["isbn"]
 
             byMethod {
                 get {
-                    bookService.find(isbn).
-                        single().
-                        subscribe { Book book ->
-                            if (book == null) {
-                                clientError 404
-                            } else {
-                                render book
-                            }
-                        }
-                }
-                put {
-                    parse(jsonNode()).
-                        observe().
-                        flatMap { input ->
-                            bookService.update(
-                                isbn,
-                                input.get("quantity").asLong(),
-                                input.get("price").asDouble()
-                            )
-                        }.
-                        flatMap {
-                            bookService.find(isbn)
-                        }.
-                        single().
-                        subscribe { Book book ->
+                    bookService.find(isbn).then { Book book ->
+                        if (book == null) {
+                            clientError 404
+                        } else {
                             render book
                         }
+                    }
+                }
+                put {
+                    parse(jsonNode()).flatMap { JsonNode input ->
+                        bookService.update(
+                                isbn,
+                                input.get("quantity").asLong(),
+                                input.get("price").asDouble() as BigDecimal
+                        ).flatMap {
+                            bookService.find(isbn)
+                        }
+                    }.then { Book book ->
+                        render book
+                    }
                 }
                 delete {
-                    bookService.delete(isbn).
-                        subscribe {
-                            response.send()
-                        }
+                    bookService.delete(isbn).then {
+                        response.send()
+                    }
                 }
             }
         }
@@ -64,30 +57,22 @@ class BookRestEndpoint extends GroovyChainAction {
         all {
             byMethod {
                 get {
-                    bookService.all().
-                        toList().
-                        subscribe { List<Book> books ->
-                            render json(books)
-                        }
+                    bookService.all().then { List<Book> books ->
+                        render json(books)
+                    }
                 }
                 post {
-                    parse(jsonNode()).
-                        observe().
-                        flatMap { input ->
-                            bookService.insert(
+                    parse(jsonNode()).flatMap { JsonNode input ->
+                        bookService.insert(
                                 input.get("isbn").asText(),
                                 input.get("quantity").asLong(),
-                                input.get("price").asDouble()
-                            )
-                        }.
-                        single().
-                        flatMap {
-                            bookService.find(it)
-                        }.
-                        single().
-                        subscribe { Book createdBook ->
-                            render createdBook
+                                input.get("price").asDouble() as BigDecimal
+                        ).flatMap {
+                            bookService.find(it.toString())
                         }
+                    }.then { Book createdBook ->
+                        render createdBook
+                    }
                 }
             }
         }

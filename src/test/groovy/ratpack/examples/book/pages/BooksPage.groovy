@@ -8,7 +8,7 @@ class BooksPage extends Page {
 
     static content = {
         heading { $("h1").text() }
-        books { moduleList BookRow, $("tbody tr") }
+        books { $("tbody tr").moduleList(BookRow) } // Updated to new API
         createBookButton { $("a", href: endsWith("/create")) }
         loginButton(required: false, cache: false) { $("a", href: endsWith("/login")) }
         logoutButton(required: false, cache: false) { $("a", href: endsWith("/logout")) }
