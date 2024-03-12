@@ -1,6 +1,9 @@
 example-books
 =============
 
+![build](https://github.com/bitsnaps/example-books/actions/workflows/ratpack.yml/badge.svg)
+
+
 An example Groovy &amp; Gradle based Ratpack app.
 
 This app demonstrates the usage of the following libraries:
