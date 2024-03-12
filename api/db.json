@@ -1,0 +1,160 @@
+{
+  "books": [
+    {
+      "data": [
+        {
+          "title": "Groovy in Action",
+          "publisher_name": "Manning Publications",
+          "author_data": [
+            {
+              "id": "dierk_koenig",
+              "name": "Dierk Koenig"
+            }
+          ]
+        }
+      ],
+      "id": "1932394842",
+      "title_long": "Groovy in Action, Second Edition",
+      "authors": [
+        "Dierk Koenig"
+      ],
+      "date_published": "2016-04-01",
+      "isbn": "1932394842",
+      "isbn13": "9781617293020",
+      "language": "English",
+      "format": "Paperback",
+      "pages": 592,
+      "dimensions": "1.4 inches x 9.2 inches x 7.4 inches",
+      "edition": "2nd ed.",
+      "dewey_decimal": "005.133",
+      "excerpt": "An example-driven guide to the Groovy language and platform, with an emphasis on productivity and readability.",
+      "overview": "Groovy in Action, Second Edition is a thoroughly revised and modernized guide to the Groovy language and platform. Written for Java developers, it presents an example-driven approach to Groovy programming, with an emphasis on productivity and readability.",
+      "synopsys": "This updated book covers Groovy 2.4 and includes new chapters on functional programming and concurrency, as well as expanded coverage of testing, build automation, and web development with Grails.",
+      "subjects": [
+        "Computers",
+        "Programming",
+        "Groovy"
+      ],
+      "reviews": [
+        "A must-read for any Java developer looking to boost their productivity with Groovy."
+      ]
+    },
+    {
+      "data": [
+        {
+          "title": "Effective Java",
+          "publisher_name": "Addison-Wesley Professional",
+          "author_data": [
+            {
+              "id": "joshua_bloch",
+              "name": "Joshua Bloch"
+            }
+          ]
+        }
+      ],
+      "id": "0134685997",
+      "title_long": "Effective Java, Third Edition",
+      "authors": [
+        "Joshua Bloch"
+      ],
+      "date_published": "2018-05-17",
+      "isbn": "0134685997",
+      "isbn13": "9780134685991",
+      "language": "English",
+      "format": "Hardcover",
+      "pages": 752,
+      "dimensions": "1.3 inches x 9.2 inches x 7.4 inches",
+      "edition": "3rd ed.",
+      "dewey_decimal": "005.133",
+      "excerpt": "A comprehensive guide to writing high-quality Java code, with an emphasis on best practices and design patterns.",
+      "overview": "Effective Java, Third Edition is a comprehensive guide to writing high-quality Java code. Written by Joshua Bloch, a distinguished engineer at Google, this book presents 78 best practices for the Java Platform, Standard Edition 8 (Java SE 8). The book is organized into 11 chapters that cover topics such as creating and destroying objects, methods common to all objects, classes and interfaces, generics, enums, annotations, lambdas and streams, concurrency, and serialization.",
+      "synopsys": "This updated third edition covers new features introduced in Java SE 8, including lambda expressions and streams, as well as updated best practices for using legacy features such as generics and enums. The book also includes a new chapter on functional programming and a revised chapter on concurrency.",
+      "subjects": [
+        "Computers",
+        "Programming",
+        "Java"
+      ],
+      "reviews": [
+        "Effective Java is a must-read for anyone who wants to write high-quality Java code. Joshua Bloch's deep understanding of the Java platform and his ability to explain complex concepts in a clear and concise way make this book an invaluable resource for Java developers of all levels."
+      ]
+    },
+    {
+      "data": [
+        {
+          "title": "Clean Code",
+          "publisher_name": "Prentice Hall",
+          "author_data": [
+            {
+              "id": "robert_martin",
+              "name": "Robert C. Martin"
+            }
+          ]
+        }
+      ],
+      "id": "1617293022",
+      "title_long": "Clean Code: A Handbook of Agile Software Craftsmanship",
+      "authors": [
+        "Robert C. Martin"
+      ],
+      "date_published": "2008-08-01",
+      "isbn": "1617293022",
+      "isbn13": "9780132350884",
+      "language": "English",
+      "format": "Paperback",
+      "pages": 464,
+      "dimensions": "1.1 inches x 9.2 inches x 7.4 inches",
+      "edition": "1st ed.",
+      "dewey_decimal": "005.1",
+      "excerpt": "A guide to writing clean, maintainable code that is easy to read and understand.",
+      "overview": "Clean Code is a guide to writing clean, maintainable code that is easy to read and understand. Written by Robert C. Martin (Uncle Bob), a software consultant and instructor with over 40 years of experience, this book presents a set of principles and practices for writing software that is easy to maintain, extend, and test. The book covers topics such as naming conventions, functions, comments, formatting, error handling, and testing, and provides practical examples and case studies to illustrate the concepts.",
+      "synopsys": "This book is a must-read for anyone who wants to write high-quality code that is easy to maintain and extend. It provides a comprehensive set of principles and practices for writing clean code, and is an invaluable resource for software developers of all levels.",
+      "subjects": [
+        "Computers",
+        "Programming",
+        "Software Engineering"
+      ],
+      "reviews": [
+        "Clean Code is a must-read for any software developer who wants to write high-quality code. Robert C. Martin's deep understanding of software development and his ability to explain complex concepts in a clear and concise way make this book an invaluable resource for anyone involved in software development."
+      ]
+    },
+    {
+  "data": [
+    {
+      "title": "Jurassic Park: A Novel",
+      "publisher_name": "Ballantine Books",
+      "author_data": [
+        {
+          "id": "crichton_michael",
+          "name": "Crichton, Michael"
+        }
+      ]
+    }
+  ],
+  "id": "0345538986",
+  "title_long": "Jurassic Park: A Novel (Science Fiction Masterpiece)",
+  "authors": [
+    "Crichton, Michael"
+  ],
+  "date_published": "1990-11-20",
+  "isbn": "0345538986",
+  "isbn13": "9780679735764",
+  "language": "English",
+  "format": "Hardcover",
+  "pages": 368,
+  "dimensions": "6.4 inches x 1.2 inches x 9.5 inches",
+  "edition": "1st Edition",
+  "dewey_decimal": "813.54",
+  "excerpt": "On a remote island, a brilliant scientist has created a genetic hybrid, a living nightmare that could destroy all life on Earth. Now, the world's greatest theme park is about to become the world's greatest horror story.",
+  "overview": "Jurassic Park is a science fiction novel by Michael Crichton, published in 1990. The story follows a group of scientists who are invited to tour a remote island where a company has been working on bringing dinosaurs back to life through genetic engineering. However, things go terribly wrong when the park's security systems fail, and the dinosaurs escape their enclosures. The novel explores themes of scientific ethics, the consequences of playing God, and the dangers of unchecked technological advancement.",
+  "synopsys": "Jurassic Park is a thrilling and thought-provoking novel that has captured the imagination of readers around the world. With its gripping plot, well-developed characters, and intelligent exploration of scientific and ethical issues, it is a must-read for fans of science fiction and adventure stories.",
+  "subjects": [
+    "Science Fiction",
+    "Adventure"
+  ],
+  "reviews": [
+    "A thrilling, mind-boggling adventure story that will keep you on the edge of your seat from start to finish.",
+    "Crichton's masterful storytelling and attention to scientific detail make Jurassic Park a true classic of modern science fiction."
+  ]
+}
+  ]
+}

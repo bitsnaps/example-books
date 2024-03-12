@@ -1,0 +1,6 @@
+{
+  "/": "/books",
+  "/api/v2/json/book/:id": "/books/:id",
+  "/api/v2/json/:apikey/book/:isbn": "/books/:isbn",
+  "/api/v2/json/book?isbn=:isbn": "/books?isbn=:isbn"
+}
