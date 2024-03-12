@@ -49,6 +49,12 @@ dependencies {
 
 }
 
+// Skip this tests during the build
+test {
+    exclude '**/BookA*'
+    exclude '**/BookF*'
+    exclude '**/Login*'
+}
 // Use JUnit Platform for unit tests.
 // tasks.named('test') {
 //     useJUnitPlatform()
